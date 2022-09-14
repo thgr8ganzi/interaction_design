@@ -72,7 +72,7 @@
             values: {
                 videoImageCount : 960,
                 imageSequence : [0, 959],
-                canvas_opacity_in : [1, 0, {start : 0, end : 0.1}],
+                canvas_opacity_in : [0, 1, {start : 0, end : 0.1}],
                 canvas_opacity_out : [1, 0, {start : 0.95, end : 1}],
                 messageA_translateY_in: [20, 0, { start: 0.15, end: 0.2 }],
                 messageB_translateY_in: [30, 0, { start: 0.5, end: 0.55 }],
@@ -238,6 +238,12 @@
                 // console.log('2 play');
                 let sequence2 = Math.round(calcValues(values.imageSequence, currentYOffset));
                 objs.context.drawImage(objs.videoImages[sequence2],0 ,0);
+
+                if(scrollRatio <= 0.5){
+                    objs.canvas.style.opacity = calcValues(values.canvas_opacity_in,currentYOffset);
+                }else{
+                    objs.canvas.style.opacity = calcValues(values.canvas_opacity_out,currentYOffset);
+                }
 
                 if (scrollRatio <= 0.25) {
                     // in
